@@ -4,6 +4,8 @@ import util.FileHelper;
 
 public class ContactApp {
 	
+	private static final String FILE_NAME ="fileName.txt"; 
+
 	/**
 	 * Desarrolle una aplicación para guardar contactos, la aplicación debe permitir: 
 			*	Adicionar un contacto
@@ -25,7 +27,7 @@ public class ContactApp {
 	public static void main(String[] args) {
 	
 		
-		String[] strContacts = FileHelper.readFile("fileName.txt"); 
+		String[] strContacts = FileHelper.readFile(FILE_NAME); 
 		if(strContacts==null)
 			strContacts = new String[0]; 
 		
@@ -47,15 +49,15 @@ public class ContactApp {
 					
 					
 					list.add(UserInterface.scannContact()); 
+					FileHelper.writeFile(list.toFileFormat() , FILE_NAME); 
 					
-						
 					break;
 				case "r":  
 					list.remove(UserInterface.scannContact()); 
 						
 					break;
 				case "l":
-					UserInterface.printList(list.list()); 
+					UserInterface.printList(list.getPersons()); 
 					break;
 					
 				case "exit":

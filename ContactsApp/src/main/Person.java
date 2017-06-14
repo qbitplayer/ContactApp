@@ -8,6 +8,8 @@ public class Person {
 	private String email; 
 	private String address;
 	
+	
+	
 	/**
 	 * Inicia las variables del objeto a partir de una cadena con formato:
 	 * format:  name surname;phone;email;address
@@ -80,11 +82,7 @@ public class Person {
 	
 	
 	
-	@Override
-	public String toString(){
-		String baseStr = super.toString(); 	
-		return baseStr + "    person: " + name  + " " + surname + " " + email + " " + phone + ""  + address;	
-	}
+	
 
 
 
@@ -103,13 +101,28 @@ public class Person {
 		return r; 
 	}
 
-
 	
 	public String getFullName(){
 		return getName() + " " + getSurname();
 	}
 	
+	@Override
+	public String toString(){
+		String baseStr = super.toString(); 	
+		return baseStr + "    person: " + name  + " " + surname + " " + email + " " + phone + ""  + address;	
+	}
+
+	public String toFileFormat() {
+		return this.name + " "+ this.surname + ";"+ 
+					this.phone + ";" + this.email + ";" + this.address; 
+	}
 	
+	
+	
+	
+	
+	
+	/*
 	public static String getNameFromFullName(String strfullName){
 		String  fullName[] = strfullName.split(" "); 
 		return fullName [0];
@@ -118,7 +131,9 @@ public class Person {
 	public static String getSurnameFromFullName(String strfullName){
 		String  fullName[] = strfullName.split(" "); 
 		return fullName.length==2?fullName [1]:""; 
-	}
+	}*/
+
+	
 	
 
 }

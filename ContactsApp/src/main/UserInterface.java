@@ -22,9 +22,17 @@ public class UserInterface {
 		for(int i=0; i < array.length; i++){
 				System.out.println( i + " " + array[i].toString() ); 
 		}
-		
 	}
 	
 
+	public static void selectPerson(Person[] array) {
+		for(int i=0; i < array.length; i++){
+				System.out.println( i + " " + array[i].toString() ); 
+		}
+		
+		
+		
+	}
+	
 	
 }

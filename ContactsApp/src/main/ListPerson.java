@@ -45,12 +45,10 @@ public class ListPerson {
 	 * @param index
 	 */
 	public void set(Person person, int index){
-		// TODO Auto-generated method stub
 		if(index< 0 || index >= contacts.length)
 			throw new RuntimeException("Indice fuera de rango");  
 		
 		contacts[index]=person; 
-		
 	}
 	
 
@@ -105,8 +103,24 @@ public class ListPerson {
 	 * @return
 	 */
 	public Person[] findByName(String strName){
-		// TODO Auto-generated method stub
-		return contacts;	
+		Person array[] = new Person[contacts.length];  
+		int counter = 0;
+		// for each 
+	
+		for(Person person: contacts){
+			String name = person.getName().toLowerCase(); 
+			if(name.startsWith(strName.toLowerCase()))
+				array[counter++]=person; 
+		}
+		
+		Person personsWithEmail[] = new Person[counter];  
+		
+		for(int i=0,k=0; i<contacts.length; i++){
+			if(contacts[i].getName().startsWith(strName))
+				personsWithEmail[k++]=contacts[i];
+		}
+		
+	 return personsWithEmail;
 	}
 
 	/**
@@ -116,19 +130,22 @@ public class ListPerson {
 	public Person[] findByEmail(String strMail){
 		Person array[] = new Person[contacts.length];  
 		int counter = 0;
-		
+		// for each 
+	
 		for(Person person: contacts){
-			if(person.getEmail().contains(strMail))
+			String email = person.getEmail().toLowerCase(); 
+			if(email.startsWith(strMail.toLowerCase()))
 				array[counter++]=person; 
 		}
 		
-		Person personsWidthEmail[] = new Person[counter];  
+		Person personsWithEmail[] = new Person[counter];  
+		
 		for(int i=0,k=0; i<contacts.length; i++){
-			if(contacts[i].getEmail().contains(strMail))
-				personsWidthEmail[k++]=contacts[i];
+			if(contacts[i].getEmail().startsWith(strMail))
+				personsWithEmail[k++]=contacts[i];
 		}
 		
-	 return personsWidthEmail;
+	 return personsWithEmail;
 	}
 	
 	
@@ -138,24 +155,23 @@ public class ListPerson {
 	 * @return
 	 */
 	public Person[] sort(){
-		// TODO Auto-generated method stub
-		String fullNames[] = new String[contacts.length]; 
-		Person[] listSort = new Person[contacts.length]; 
+		String sortNames[] = new String[contacts.length];
+		Person sortContacts[] = new Person[contacts.length];
 		
-		fullNames[0] = contacts[0].getFullName(); 
+		for(int i=0;i<contacts.length;i++){
+			sortNames[i] = contacts[i].getFullName();
+		}
+		Arrays.sort(sortNames);
+		int control=0;
+		for(int i=0;i<sortNames.length;i++){
+			for(int j=0;j<contacts.length;j++){
+				if(sortNames[i].equals(contacts[j].getFullName())){
+					sortContacts[control++]=contacts[j];
+				}
+			}
+		}
 		
-		
-		Arrays.sort(fullNames); 
-		
-		String name = Person.getNameFromFullName( fullNames[0]); 
-		
-		
-		Person person = findByFullName(name);
-		
-		listSort[0] = person; 
-		
-		
-		return contacts;
+		return sortContacts;
 	}
 	
 	private Person findByFullName(String fullName) {
@@ -169,16 +185,30 @@ public class ListPerson {
 		}
 		return personFound;
 	}
-
 	
-	public Person[] list(){
-		Person array[] = new Person[contacts.length];  
-		int counter = 0;
-		
+	
+	
+	public Person[] getContacts(){
+		return contacts; 
+	}
+	
+
+	public Person[] getPersons(){
+		Person array[] = new Person[contacts.length];  	
 		for(int i=0; i<contacts.length; i++){
-			array[i]=array[i]; 
-		}
-		
+			array[i]=contacts[i]; 
+		}	
+	 return array; 
+	}
+	
+	
+	public String[] toFileFormat(){		
+		String array[] = new String[contacts.length];  	
+		for(int i=0; i<contacts.length; i++){
+			array[i]=contacts[i].toFileFormat(); 
+		}	
 		return array; 
 	}
+	
+	
 }
