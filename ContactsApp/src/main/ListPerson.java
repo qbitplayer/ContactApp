@@ -6,7 +6,6 @@ public class ListPerson {
 	
 	private Person[] contacts;
 
-	
 	public ListPerson(String[] strContacts){
 		iniContact(strContacts); 
 	}
@@ -21,7 +20,6 @@ public class ListPerson {
 			  contacts[i] = contact;  
 		  }
 	}
-
 
 	/**
 	 * Retorna el numero de personas que contiene
